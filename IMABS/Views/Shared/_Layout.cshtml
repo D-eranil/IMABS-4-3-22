@@ -1,0 +1,85 @@
+﻿@model IMABS.Models.CommonSettingsViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="title" content="Ingram Micro Australia">
+    <meta name="description" content="Australia's Largest Technology Distributor">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ingrammicro.com.au/">
+    <meta property="og:title" content="Ingram Micro Australia">
+    <meta property="og:description" content="Australia's Largest Technology Distributor">
+
+    <!--Favicon-->
+    <link rel="icon" type="image/png" href="/Content/images/favicon.png" />    <!-- Bootstrap CSS -->
+    <link href="~/Content/imabs.bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Google Font - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="/Content/all.css" class="rel">
+    <!-- Slick Slider CSS -->
+    <link href="~/Content/imabs.slick.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/Content/style.css" class="rel">
+    
+    <title>@ViewBag.Title - Ingram Micro Australia</title>
+
+    <page-builder-styles />
+</head>
+<body>
+    
+
+    @await Component.InvokeAsync("Header")
+
+
+    @RenderBody()
+
+
+    @if (Model != null && Model.EnableCallToTactionBanner != null && Model.EnableCallToTactionBanner)
+    {
+        <editable-area area-identifier="areaCTA1" area-options-default-section-identifier="IMABS.CallToActionBanner" />
+    }
+
+    @if (Model != null && Model.EnablePromotionsBanner != null && Model.EnablePromotionsBanner)
+    {
+        <editable-area area-identifier="areaPromo1" area-options-default-section-identifier="IMABS.PromotionsBanner" />
+    }
+
+    @if (Model != null && Model.EnableBreadcrumb != null && Model.EnableBreadcrumb)
+    {
+        @await Component.InvokeAsync("Breadcrumbs");
+    }
+
+
+    @await Component.InvokeAsync("Footer")
+
+        
+    <!--Path to Popper -it is for dropsdowns etc in bootstrap-->
+    <script src="~/Scripts/imabs.popper.min.js"></script>
+
+    <!--Bootstrap-->
+    <script src="~/Scripts/imabs.bootstrap.min.js"></script>
+
+    <page-builder-scripts />
+
+    <!-- Slick Slider JS -->
+    <script src="~/Scripts/imabs.slick.min.js"></script>
+
+
+    <!--Custom Javascript-->
+    <script src="/Scripts/main.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
